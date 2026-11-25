@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#101318"><title>Torneo Street</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div><div class="eyebrow">STREET LIFE • ONLINE</div><div class="brand">TORNEO <span>STREET</span></div></div>
+      <div class="wallet">₽ <b id="cash">25 000</b><small id="level">LVL 1</small></div>
+    </header>
+    <main>
+      <section id="home" class="screen active">
+        <div class="hero">
+          <div class="hero-copy"><div class="tag">YOUR CITY. YOUR RULES.</div><h1>Ночная<br><em>смена</em></h1><p>Заводи мотор. Город не спит.</p><button class="primary" id="driveBtn">ВЫЕХАТЬ В ГОРОД <span>↗</span></button></div>
+          <div class="hero-car"><div class="light-beam"></div><div class="car-illustration"><div class="car-roof"></div><div class="car-body"></div><div class="wheel w1"></div><div class="wheel w2"></div></div><div class="car-caption">HONDA TORNEO • EURO R</div></div>
+        </div>
+        <div class="section-title">ТВОЙ ПРОГРЕСС <span>СЕЗОН 01</span></div>
+        <div class="stats"><div class="stat"><small>УРОВЕНЬ</small><b id="statLevel">01</b></div><div class="stat"><small>ОПЫТ</small><b id="xp">0 XP</b></div><div class="stat"><small>ОНЛАЙН</small><b id="online">1</b></div></div>
+        <div class="quick-grid"><button class="tile" data-go="garage"><span>🔧</span><b>ГАРАЖ</b><small>Тюнинг и стиль</small></button><button class="tile" data-go="race"><span>🏁</span><b>ЗАЕЗД</b><small>Заработай денег</small></button><button class="tile" data-go="rating"><span>🏆</span><b>РЕЙТИНГ</b><small>Лучшие пилоты</small></button></div>
+      </section>
+      <section id="city" class="screen">
+        <div class="game-head"><div><div class="eyebrow">OPEN CITY • ONLINE</div><b>НОЧНОЙ РАЙОН</b></div><button class="small-btn" id="backHome">В ГАРАЖ ✕</button></div>
+        <div class="world-wrap"><canvas id="world" width="1000" height="1000"></canvas><div class="world-hud"><span class="live-dot"></span> LIVE <b id="worldOnline">1</b></div><div class="map-label">DOWNTOWN</div></div>
+        <div class="drive-controls"><div class="control-hint">УПРАВЛЕНИЕ: WASD / СТРЕЛКИ</div><div class="pad"><button data-key="ArrowLeft">◀</button><button data-key="ArrowUp">▲</button><button data-key="ArrowDown">▼</button><button data-key="ArrowRight">▶</button></div></div>
+      </section>
+      <section id="garage" class="screen">
+        <div class="section-title">ТВОЙ ГАРАЖ <span>01 / 01</span></div>
+        <div class="garage-car"><div class="garage-glow"></div><div class="car-illustration large" id="garageCar"><div class="car-roof"></div><div class="car-body"></div><div class="wheel w1"></div><div class="wheel w2"></div></div><div class="car-caption">HONDA TORNEO • 1997</div></div>
+        <div class="section-title">УЛУЧШЕНИЯ <span>MAX LVL 5</span></div>
+        <div class="upgrade"><div><b>⚙ ДВИГАТЕЛЬ</b><small>Мощность и разгон</small><span id="engineLevel">Уровень 1 / 5</span></div><button id="engineBtn">7 000 ₽</button></div>
+        <div class="upgrade"><div><b>↕ ПОДВЕСКА</b><small>Управляемость и посадка</small><span id="suspensionLevel">Уровень 1 / 5</span></div><button id="suspensionBtn">5 000 ₽</button></div>
+        <div class="section-title">ЦВЕТ КУЗОВА</div><div class="colors"><button data-color="#d7dce2" style="--c:#d7dce2"></button><button data-color="#b20d22" style="--c:#b20d22"></button><button data-color="#111820" style="--c:#111820"></button><button data-color="#174b83" style="--c:#174b83"></button><button data-color="#e0a52b" style="--c:#e0a52b"></button></div>
+      </section>
+      <section id="race" class="screen">
+        <div class="section-title">УЛИЧНЫЕ ЗАЕЗДЫ <span>EVENT 01</span></div>
+        <div class="race-card"><div class="race-art">🏁</div><div class="eyebrow">SPRINT • DOWNTOWN</div><h2>Ночная прямая</h2><p>Короткий заезд по улицам района. Пройди дистанцию и забери награду.</p><div class="race-meta"><span>НАГРАДА <b>до 3 500 ₽</b></span><span>ОПЫТ <b>+120 XP</b></span></div><button class="primary" id="startRace">НАЧАТЬ ЗАЕЗД ↗</button></div>
+        <div id="raceResult" class="notice hidden"></div>
+      </section>
+      <section id="rating" class="screen">
+        <div class="section-title">ТАБЛИЦА ПИЛОТОВ <span>TOP 20</span></div><div id="leaderboard" class="leaderboard"><p class="muted">Загружаем рейтинг...</p></div>
+      </section>
+    </main>
+    <nav class="nav"><button class="nav-item active" data-go="home">⌂<small>ГОРОД</small></button><button class="nav-item" data-go="garage">▣<small>ГАРАЖ</small></button><button class="nav-item" data-go="race">⚑<small>ГОНКИ</small></button><button class="nav-item" data-go="rating">♛<small>ТОП</small></button></nav>
+    <div id="toast" class="toast"></div>
+  </div>
+  <script src="/game.js"></script>
+</body></html>
